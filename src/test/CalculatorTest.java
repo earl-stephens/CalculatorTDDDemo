@@ -65,6 +65,13 @@ public class CalculatorTest {
 		Assert.assertEquals("1.25", result);
 	}
 	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenThreeDecimalPlacesPassed() {
+		Calculator calculator = new Calculator();
+		calculator.add("1.11", "1.111");
+		
+	}
+	
 	@Test
 	public void shouldSubtractTwoDecimalsFromAString() {
 		Calculator calculator = new Calculator();
