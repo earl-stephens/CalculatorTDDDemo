@@ -21,7 +21,13 @@ public class Calculator {
 	}
 	
 	public String subtract(String first, String second) {
-		double difference = Double.parseDouble(first) - Double.parseDouble(second);
-		return String.format("%.2f", difference);
+		BigDecimal firstValue = new BigDecimal(first);
+		BigDecimal secondValue = new BigDecimal(second);
+		
+		if(firstValue.scale() > 2 || secondValue.scale() > 2) {
+			throw new IllegalArgumentException("Too many decimal places.");
+		}
+		
+		return firstValue.subtract(secondValue).toString();
 	}
 }

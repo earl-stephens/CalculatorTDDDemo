@@ -69,7 +69,6 @@ public class CalculatorTest {
 	public void shouldThrowExceptionWhenThreeDecimalPlacesPassed() {
 		Calculator calculator = new Calculator();
 		calculator.add("1.11", "1.111");
-		
 	}
 	
 	@Test
@@ -84,5 +83,11 @@ public class CalculatorTest {
 		Calculator calculator = new Calculator();
 		String result = calculator.subtract("-12.25", "13.50");
 		Assert.assertEquals("-25.75", result);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionWhenThreeDecimalPlacesPassedToSubtract() {
+		Calculator calculator = new Calculator();
+		calculator.subtract("1.11", "1.111");
 	}
 }
