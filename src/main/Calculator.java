@@ -2,11 +2,13 @@ package main;
 
 public class Calculator {
 
-	public int add(int first, int second) {
-		return first + second;
+	public String add(String first, String second) {
+		double sum = Double.parseDouble(first) + Double.parseDouble(second);
+		return String.format("%.2f", sum);
 	}
 	
-	public int subtract(int first, int second) {
-		return first - second;
+	public String subtract(String first, String second) {
+		double difference = Double.parseDouble(first) - Double.parseDouble(second);
+		return String.format("%.2f", difference);
 	}
 }
