@@ -14,6 +14,10 @@ import main.Calculator;
  * take two Strings which can contain decimals to two places
  * and returns a String.  Decimals more than two places
  * should throw an exception.
+ * Update the calculator to add a multiply method which
+ * takes two Strings which can contain two decimal places
+ * and returns a String.  Decimals more than two places 
+ * should throw an exception.
  */
 public class CalculatorTest {
 	/* Instead of instatiating a new calculator for each
@@ -99,5 +103,18 @@ public class CalculatorTest {
 	public void shouldThrowExceptionWhenThreeDecimalPlacesPassedToSubtract() {
 		//Calculator calculator = new Calculator();
 		calculator.subtract("1.11", "1.111");
+	}
+	
+	@Test
+	public void shouldMultiplyTwoStrings() {
+		String result = calculator.multiply("1.11", "1.11");
+		Assert.assertEquals("1.2321", result);
+		String result2 = calculator.multiply("100", "2.6");
+		Assert.assertEquals("260.0", result2);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldThrowExceptionIfMultiplyingMoreThan2Decimals() {
+		calculator.multiply("1.111", "2.2");	
 	}
 }
