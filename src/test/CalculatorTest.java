@@ -18,6 +18,11 @@ import main.Calculator;
  * takes two Strings which can contain two decimal places
  * and returns a String.  Decimals more than two places 
  * should throw an exception.
+ * Update the calculator to add a divide method which
+ * takes two Strings which can contain two decimal places
+ * and returns a String.  Decimals more than two places
+ * should throw an exception.  If the second value passed
+ * in is zero, throw an exception.
  */
 public class CalculatorTest {
 	/* Instead of instatiating a new calculator for each
@@ -116,5 +121,21 @@ public class CalculatorTest {
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowExceptionIfMultiplyingMoreThan2Decimals() {
 		calculator.multiply("1.111", "2.2");	
+	}
+	
+	@Test
+	public void shouldDivideTwoStrings() {
+		String result = calculator.divide("2.22", "1.11");
+		Assert.assertEquals("2", result);
+	}
+	
+	@Test(expected = IllegalArgumentException.class)
+	public void divideShouldThrowExceptionForOver2DecimalPlaces() {
+		calculator.divide("2.222", "1.1");
+	}
+	
+	@Test(expected = IllegalArgumentException.class) 
+		public void divideByZeroShouldThrowException() {
+			calculator.divide("1.11", "0");
 	}
 }
