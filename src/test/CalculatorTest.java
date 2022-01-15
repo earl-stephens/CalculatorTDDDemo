@@ -1,6 +1,7 @@
 package test;
 
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 import main.Calculator;
@@ -15,10 +16,19 @@ import main.Calculator;
  * should throw an exception.
  */
 public class CalculatorTest {
+	/* Instead of instatiating a new calculator for each
+	 * test, can create a class variable to use
+	 */
 	
+	private Calculator calculator;
+	
+	@Before
+	public void setUp() {
+		calculator = new Calculator();
+	}
 	@Test
 	public void shouldReturnAnInstanceOfCalculator() {
-		Calculator calculator =  new Calculator();
+		//Calculator calculator =  new Calculator();
 		Assert.assertNotNull(calculator);
 	}
 	/*
@@ -53,41 +63,41 @@ public class CalculatorTest {
 	
 	@Test
 	public void shouldAddTwoDecimalsFromAString() {
-		Calculator calculator = new Calculator();
+		//Calculator calculator = new Calculator();
 		String result = calculator.add("12.25", "13.52");
 		Assert.assertEquals("25.77", result);
 	}
 	
 	@Test
 	public void shouldAddTwoNegativeDecimalsFromAString() {
-		Calculator calculator = new Calculator();
+		//Calculator calculator = new Calculator();
 		String result = calculator.add("-12.25", "13.50");
 		Assert.assertEquals("1.25", result);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowExceptionWhenThreeDecimalPlacesPassed() {
-		Calculator calculator = new Calculator();
+		//Calculator calculator = new Calculator();
 		calculator.add("1.11", "1.111");
 	}
 	
 	@Test
 	public void shouldSubtractTwoDecimalsFromAString() {
-		Calculator calculator = new Calculator();
+		//Calculator calculator = new Calculator();
 		String result = calculator.subtract("14.75", "13.50");
 		Assert.assertEquals("1.25", result);
 	}
 	
 	@Test
 	public void shouldSubtractTwoNegativeDecimalsFromAString() {
-		Calculator calculator = new Calculator();
+		//Calculator calculator = new Calculator();
 		String result = calculator.subtract("-12.25", "13.50");
 		Assert.assertEquals("-25.75", result);
 	}
 	
 	@Test(expected = IllegalArgumentException.class)
 	public void shouldThrowExceptionWhenThreeDecimalPlacesPassedToSubtract() {
-		Calculator calculator = new Calculator();
+		//Calculator calculator = new Calculator();
 		calculator.subtract("1.11", "1.111");
 	}
 }
