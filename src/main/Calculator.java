@@ -46,6 +46,10 @@ public class Calculator {
 		BigDecimal firstValue = new BigDecimal(first);
 		BigDecimal secondValue = new BigDecimal(second);
 		
+		if(secondValue.intValue() == 0) {
+			throw new IllegalArgumentException("Cannot divide by zero.");
+		}
+		
 		if(firstValue.scale() > 2 || secondValue.scale() > 2) {
 			throw new IllegalArgumentException("Too many decimal places.");
 		}
