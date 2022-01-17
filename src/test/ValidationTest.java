@@ -51,8 +51,10 @@ public class ValidationTest {
 	@Test
 	public void shouldReturnAnErrorForTooManyDecimalPlaces() {
 		List<String> errors = validation.validate("1.111");
-		List<String> expected = Arrays.asList("Too many decimal places for value 1.11");
-		assertThat(errors, is(expected));
+		//List<String> expected = Arrays.asList("Too many decimal places for value 1.11");
+		//assertThat(errors, is(expected));
+		Assert.assertEquals(1,  errors.size());
+		Assert.assertEquals("Too many decimal places for value 1.111", errors.get(0));
 	}
 
 }
