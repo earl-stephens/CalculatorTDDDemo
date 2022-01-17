@@ -10,6 +10,13 @@ public class Calculator {
 	public Calculator(Validation validation) {
 		this.validation = validation;
 	}
+	
+	private void validateDecimals(String... values) {
+		List<String> errors = this.validation.validate(values);
+		if(!errors.isEmpty()) {
+			throw new IllegalArgumentException(errors.toString());
+		}
+	}
 
 	public String add(String first, String second) {
 		//	double sum = Double.parseDouble(first) + Double.parseDouble(second);
@@ -47,10 +54,13 @@ public class Calculator {
 		
 		return firstValue.subtract(secondValue).toString();
 		*/
+		/* replace below with new method
 		List<String> errors = this.validation.validate(first, second);
 		if(!errors.isEmpty()) {
 			throw new IllegalArgumentException(errors.toString());
 		}
+		*/
+		validateDecimals(first, second);
 		return new BigDecimal(first).subtract(new BigDecimal(second)).toString();
 	}
 	
