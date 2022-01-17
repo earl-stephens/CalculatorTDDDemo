@@ -32,6 +32,11 @@ import static org.hamcrest.MatcherAssert.assertThat;
  * a List<String> of size 2 is returned containing the messages
  * "Too many decimal places for value 1.111", "Too many decimal
  * places for value 2.222".
+ * 
+ * Pass an instance of the Validator class in to the Calculator
+ * constructor so that the Add, Subract, Multiply and Divide
+ * methods can use it to validate their values rather then use
+ * the duplicate code currently in place.
  */
 
 public class ValidationTest {

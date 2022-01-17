@@ -5,6 +5,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import main.Calculator;
+import main.Validation;
 
 /* Update calculator to change the add method to take two
  * Strings which can contain decimal to two places and 
@@ -30,10 +31,12 @@ public class CalculatorTest {
 	 */
 	
 	private Calculator calculator;
+	private Validation validation;
 	
 	@Before
 	public void setUp() {
-		calculator = new Calculator();
+		validation = new Validation();
+		calculator = new Calculator(validation);
 	}
 	@Test
 	public void shouldReturnAnInstanceOfCalculator() {
@@ -137,5 +140,12 @@ public class CalculatorTest {
 	@Test(expected = IllegalArgumentException.class) 
 		public void divideByZeroShouldThrowException() {
 			calculator.divide("1.11", "0");
+	}
+	
+	// This test isn't needed as it was tested above
+	// for the add method
+	@Test(expected = IllegalArgumentException.class)
+	public void shouldCallValidateMethodForAdd() {
+		calculator.add("1.111", "2.22");
 	}
 }
