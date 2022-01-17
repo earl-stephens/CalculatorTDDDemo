@@ -10,13 +10,6 @@ public class Calculator {
 	public Calculator(Validation validation) {
 		this.validation = validation;
 	}
-	
-	private void validateDecimals(String... values) {
-		List<String> errors = this.validation.validate(values);
-		if(!errors.isEmpty()) {
-			throw new IllegalArgumentException(errors.toString());
-		}
-	}
 
 	public String add(String first, String second) {
 		//	double sum = Double.parseDouble(first) + Double.parseDouble(second);
@@ -65,28 +58,23 @@ public class Calculator {
 	}
 	
 	public String multiply(String first, String second) {
-		BigDecimal firstValue = new BigDecimal(first);
-		BigDecimal secondValue = new BigDecimal(second);
-		
-		if(firstValue.scale() > 2 || secondValue.scale() > 2) {
-			throw new IllegalArgumentException("Too many decimal places.");
-		}
-		
-		return firstValue.multiply(secondValue).toString();
+		validateDecimals(first, second);
+		return new BigDecimal(first).multiply(new BigDecimal(second)).toString();
 	}
 	
 	public String divide(String first, String second) {
-		BigDecimal firstValue = new BigDecimal(first);
-		BigDecimal secondValue = new BigDecimal(second);
-		
-		if(secondValue.intValue() == 0) {
+		if(new BigDecimal(second).intValue() == 0) {
 			throw new IllegalArgumentException("Cannot divide by zero.");
 		}
-		
-		if(firstValue.scale() > 2 || secondValue.scale() > 2) {
-			throw new IllegalArgumentException("Too many decimal places.");
-		}
-		
-		return firstValue.divide(secondValue).toString();
+		validateDecimals(first, second);
+		return new BigDecimal(first).divide(new BigDecimal(second)).toString();
 	}
+	
+	private void validateDecimals(String... values) {
+		List<String> errors = this.validation.validate(values);
+		if(!errors.isEmpty()) {
+			throw new IllegalArgumentException(errors.toString());
+		}
+	}
+
 }
