@@ -3,6 +3,10 @@ package main;
 import java.math.BigDecimal;
 
 public class Calculator {
+	
+	public Calculator() {
+		Validation validator = new Validation();
+	}
 
 	public String add(String first, String second) {
 		//	double sum = Double.parseDouble(first) + Double.parseDouble(second);
@@ -17,6 +21,8 @@ public class Calculator {
 		if(firstValue.scale() > 2 || secondValue.scale() > 2) {
 			throw new IllegalArgumentException("Too many decimal places.");
 		}
+		
+		validator.validate(first, second);
 		return firstValue.add(secondValue).toString();
 	}
 	

@@ -138,4 +138,10 @@ public class CalculatorTest {
 		public void divideByZeroShouldThrowException() {
 			calculator.divide("1.11", "0");
 	}
+	
+	@Test
+	public void shouldCallValidateMethodForAdd() {
+		String result = calculator.add("1.111", "2.22");
+		Assert.assertEquals("Too many decimal places for 1.111", result);
+	}
 }
